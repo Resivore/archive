@@ -15,7 +15,7 @@ function renderDesigns(designs) {
     .map(d => `
       <div class="card">
         <h3>${d.name}</h3>
-        <img src="${d.image1}" width="150" /><br/>
+        <img src="${d.img1}" width="150" /><br/>
         <small>Slots: ${d.slots}</small>
       </div>`)
     .join('')
