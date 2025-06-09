@@ -41,7 +41,7 @@ supabase
     const newCard = `
       <div class="card">
         <h3>${payload.new.name}</h3>
-        <img src="${payload.new.image1}" width="150" /><br/>
+        <img src="${payload.new.img1}" width="150" /><br/>
         <small>Slots: ${payload.new.slots}</small>
       </div>`
     document.getElementById('design-list')
@@ -57,7 +57,7 @@ document
     const f = e.target
     const formData = {
       name:   f.name.value,
-      image1: f.image1.value,
+      img1: f.img1.value,
       slots: +(f.slots.value || 0),
       status: 'available'         // if you have a status column
     }
