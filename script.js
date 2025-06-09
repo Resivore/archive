@@ -35,20 +35,24 @@ async function loadInitial() {
 }
 loadInitial()
 
-// 6) Subscribe to real-time INSERT events
+// 6) Subscribe to real-time INSERT events in v2
 supabase
-  .from('designs')
-  .on('INSERT', payload => {
-    // Prepend the new design to the list
-    const newCard = `
-      <div class="card">
-        <h3>${payload.new.name}</h3>
-        <img src="${payload.new.img1}" width="150" /><br/>
-        <small>Slots: ${payload.new.slots}</small>
-      </div>`
-    document.getElementById('design-list')
-      .insertAdjacentHTML('afterbegin', newCard)
-  })
+  .channel('designs-channel')                         // give it any name
+  .on(
+    'postgres_changes',                                // this says “I want DB changes”
+    { event: 'INSERT', schema: 'public', table: 'designs' },
+    (payload) => {
+      // exactly the same rendering code you had:
+      const newCard = `
+        <div class="card">
+          <h3>${payload.new.name}</h3>
+          <img src="${payload.new.img1}" width="150" /><br/>
+          <small>Slots: ${payload.new.slots}</small>
+        </div>`
+      document.getElementById('design-list')
+        .insertAdjacentHTML('afterbegin', newCard)
+    }
+  )
   .subscribe()
 
 // 7) Wire up the form to INSERT into Supabase
