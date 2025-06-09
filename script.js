@@ -1,3 +1,5 @@
+console.log('🛠️ script.js loaded')
+
 // 1) Import Supabase client from the CDN
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
@@ -53,6 +55,11 @@ supabase
 document
   .getElementById('design-form')
   .addEventListener('submit', async e => {
+    console.log('🛠️ form submit event —', {
+  name: f.name.value,
+  img1: f.img1.value,
+  slots: f.slots.value
+})
     e.preventDefault()
     const f = e.target
     const formData = {
