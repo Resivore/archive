@@ -26,7 +26,7 @@ async function loadInitial() {
   const { data, error } = await supabase
     .from('designs')           // or your table name
     .select('*')
-    .order('created_at', { ascending: false })
+    .order('createdat', { ascending: false })
 
   if (error) return console.error(error)
   renderDesigns(data)
