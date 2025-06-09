@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Design Shop</title>
+  <style>
+    /* ➤ Minimal styling */
+    form { margin-bottom: 1em; }
+    .card { border: 1px solid #ccc; padding: 1em; margin-bottom: .5em; }
+  </style>
+</head>
+<body>
+
+  <h1>Submit a New Design</h1>
+  <form id="design-form">
+    <input name="name"     placeholder="Name"    required /><br/>
+    <input name="image1"   placeholder="Image URL" required /><br/>
+    <input name="slots"    type="number" min="0" max="4" placeholder="Slots" /><br/>
+    <button type="submit">Add Design</button>
+  </form>
+
+  <h1>Available Designs</h1>
+  <div id="design-list">Loading…</div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
