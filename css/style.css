@@ -6,32 +6,32 @@
 
 @font-face {
     font-family: "Aptos";
-    src: url("fonts/Aptos.woff2") format("woff2");
+    src: url("../fonts/Aptos.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "Aptos";
-    src: url("fonts/Aptos-Light.woff2") format("woff2");
+    src: url("../fonts/Aptos-Light.woff2") format("woff2");
     font-weight: 300;
     font-style: normal;
 }
 @font-face {
     font-family: "Aptos";
-    src: url("fonts/Aptos-Bold.woff2") format("woff2");
+    src: url("../fonts/Aptos-Bold.woff2") format("woff2");
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: "Aptos";
-    src: url("fonts/Aptos-Italic.woff2") format("woff2");
+    src: url("../fonts/Aptos-Italic.woff2") format("woff2");
     font-weight: normal;
     font-style: italic;
 }
 
 :root {
---user: url(aero.png), url(https://www.wajas.com/_images/avatars/298.png);
---background: url("dark-bg.png"), url(https://i.imgur.com/vO1oHCZ.png), #111;
+--user: url(../images/aero.png), url(https://www.wajas.com/_images/avatars/298.png);
+--background: url(../images/dark-bg.png), url(https://i.imgur.com/vO1oHCZ.png), #111;
 --background-main: #0a0a0a;
 --background-accent: #121212;
 --text: #7c7c7c;
@@ -296,14 +296,14 @@ a:hover,
 }
 
 #lilac .affiliate-image {
-    background: url(lilac.png), url(https://i.imgur.com/Ddg6RPI.png);
+    background: url(../images/lilac.png), url(https://i.imgur.com/Ddg6RPI.png);
     background-size: 50px;
     height: 50px;
     width: 50px;
 }
 
 #finch .affiliate-image {
-    background: url(finch.png), url(https://i.imgur.com/rUnqz6m.png);
+    background: url(../images/finch.png), url(https://i.imgur.com/rUnqz6m.png);
     background-size: 50px;
     height: 50px;
     width: 50px;
