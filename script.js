@@ -29,7 +29,7 @@ async function loadInitial() {
   const { data, error } = await supabase
     .from('designs')            // your table name
     .select('*')
-    .order('createdat', { ascending: false })
+    .order('created_at', { ascending: false })
 
   if (error) {
     console.error('Error loading designs:', error)
