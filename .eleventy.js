@@ -1,12 +1,16 @@
 module.exports = function(eleventyConfig) {
+  // Passthrough copy asset folders to the output "publish" directory
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("fonts");
+  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("js");
+
   return {
-    // where Eleventy looks for your .njk files
     dir: {
       input: ".",
       includes: "_includes",
       output: "publish"
     },
-    // process both .html (copied) and .njk (templated)
-    templateFormats: ["html", "njk"]
+    templateFormats: ["html", "njk"] // Process both .html and .njk files
   };
 };
