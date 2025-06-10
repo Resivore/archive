@@ -1,0 +1,12 @@
+:root {
+--user: url(aero.png), url(https://www.wajas.com/_images/avatars/298.png);
+--background: url("light-bg.png"), url(https://i.imgur.com/n2Kb51p.png), #fdfdfd;
+--background-main: #f5f5f5;
+--background-accent: #e7e7e7;
+--text: #7c7c7c;
+--text-accent: #555;
+--link: #5f819b;
+--link-hover: #2b4b62;
+--glow: drop-shadow(0 0 1px #95aebf);
+--border: 1px solid #cdcdcd;
+}
