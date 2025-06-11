@@ -20,7 +20,7 @@ function buildCardHTML(d) {
     .map((_, i) => i < (d.slots || 0) ? '<i class="fas fa-circle"></i>' : '<i class="far fa-circle"></i>')
     .join('')
 
-  const previews = [d.img1, d.img2, d.img3, d.img4]
+  const previews = [d.img2, d.img3, d.img4]
     .filter(Boolean)
     .map((url, i) => `<img src="${url}" alt="Thumb ${i + 1}" referrerpolicy="no-referrer"/>`)
     .join('')
@@ -63,7 +63,8 @@ function buildCardHTML(d) {
 
 function renderDesigns(designs) {
   const list = document.getElementById('available')
-  list.innerHTML = designs.map(d => buildCardHTML(d)).join('')
+    list.innerHTML = designs.map(d => buildCardHTML(d)).join('')
+  if (window.setupDesignCards) window.setupDesignCards(list)
 }
 
 // Load initial data
@@ -88,7 +89,9 @@ supabase
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'designs' }, (payload) => {
     const d = payload.new
     if (d.status !== 'available') return
-    document.getElementById('available').insertAdjacentHTML('afterbegin', buildCardHTML(d))
+    const list = document.getElementById('available')
+    list.insertAdjacentHTML('afterbegin', buildCardHTML(d))
+    if (window.setupDesignCards) window.setupDesignCards(list)
   })
   .subscribe()
 

@@ -34,15 +34,15 @@
     };
 })();
 
-document.addEventListener("DOMContentLoaded", function () {
-    // For each .main-content section on the page...
-    document.querySelectorAll(".main-content").forEach((container) => {
-        // Build a map of each design-card → its original index *within this container*.
-        const originalIndexMap = new Map();
-        const cards = Array.from(container.querySelectorAll(".design-card"));
+(function () {
+    function setupDesignCards(root = document) {
+        root.querySelectorAll(".main-content").forEach((container) => {
+            const cards = Array.from(container.querySelectorAll(".design-card"));
 
         cards.forEach((card, index) => {
-            originalIndexMap.set(card, index);
+                if (card.dataset.bound) return;
+                card.dataset.bound = "true";
+                card.dataset.origIndex = index;
 
             const mainImage = card.querySelector(".main-image img");
             const previews = card.querySelectorAll(".preview-row img");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (ph && ph.classList.contains("card-placeholder")) {
                         ph.replaceWith(other);
                     } else {
-                        const otherIndex = originalIndexMap.get(other);
+                        const otherIndex = +other.dataset.origIndex;
                         const siblings = Array.from(container.querySelectorAll(".design-card"));
                         const ref = siblings[otherIndex] || null;
                         if (ref) container.insertBefore(other, ref);
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (next && next.classList.contains("card-placeholder")) {
                         next.replaceWith(card);
                     } else {
-                        const origIndex = originalIndexMap.get(card);
+                        const origIndex = +card.dataset.origIndex;
                         const siblings = Array.from(container.querySelectorAll(".design-card"));
                         const ref = siblings[origIndex] || null;
                         if (ref) container.insertBefore(card, ref);
@@ -144,23 +144,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ───────────────────────────────────────────────────────────────────────
-    // H A S H  H A N D L I N G  (unchanged)
-    // If the URL has a hash (e.g. #available-stained-glass or #sold-someCard),
-    // expand that card (which calls scrollIntoView under the hood).
-    // Our monkey‐patch will then “tack on” the extra 20px.
-    // ───────────────────────────────────────────────────────────────────────
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-        const target = document.getElementById(hash);
-        if (target && target.classList.contains("design-card")) {
-            const footer = target.querySelector(".design-card-footer");
-            if (footer) {
-                // We wait a tiny bit so that the DOM is fully rendered, then click:
-                setTimeout(() => {
-                    footer.click();
-                }, 50);
+        // ───────────────────────────────────────────────────────────────────────
+        // H A S H  H A N D L I N G  (unchanged)
+        // If the URL has a hash (e.g. #available-stained-glass or #sold-someCard),
+        // expand that card (which calls scrollIntoView under the hood).
+        // Our monkey‐patch will then “tack on” the extra 20px.
+        // ───────────────────────────────────────────────────────────────────────
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            const target = document.getElementById(hash);
+            if (target && target.classList.contains("design-card")) {
+                const footer = target.querySelector(".design-card-footer");
+                if (footer) {
+                    // We wait a tiny bit so that the DOM is fully rendered, then click:
+                    setTimeout(() => {
+                        footer.click();
+                    }, 50);
+                }
             }
         }
     }
-});
+
+    window.setupDesignCards = setupDesignCards;
+    document.addEventListener("DOMContentLoaded", () => setupDesignCards());
+})();
