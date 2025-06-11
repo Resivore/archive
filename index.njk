@@ -3,6 +3,13 @@ layout: layouts/base.njk
 title: "{{ shop.name }}"
 ownerId: "{{ shop.ownerId }}"
 ---
+<div class="layout">
+            {% include "navbar.html" %}
+            <div class="content-wrapper">
+                <aside class="sidebar-wrapper">
+                    {% include "sidebar.html" %}
+                    <div class="sidebar-toggle-handle"><i class="fa-solid fa-caret-left"></i></div>
+                </aside>
 <main class="main-content" id="available"><!-- CARDS --></main>
 <main class="main-content" id="test">
     <h1>Submit a New Design</h1>
@@ -19,7 +26,5 @@ ownerId: "{{ shop.ownerId }}"
 <main class="main-content" id="sold"><!-- SOLD CARDS --></main>
 <main class="main-content" id="created"><!-- CREATED CARDS --></main>
 <main class="main-content" id="requests">{% include "requests.html" %}</main>
+</div>
 
-<script>
-  window.ownerId = "{{ shop.ownerId }}"
-</script>
