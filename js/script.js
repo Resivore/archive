@@ -128,7 +128,7 @@ async function renderAuthStatus() {
 
     // 3) Render “Signed in as …” with a Sign out link:
     authStatusEl.innerHTML = `
-      signed in as <strong>${profile.username}</strong>
+      <div>signed in as <b>${profile.username}</b></div>
       <a href="#" id="sign-out">sign out</a>
     `
     document
