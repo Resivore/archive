@@ -36,7 +36,11 @@
 
 (function () {
     function setupDesignCards(root = document) {
-        root.querySelectorAll(".main-content").forEach((container) => {
+        const containers =
+            root.classList && root.classList.contains("main-content")
+                ? [root]
+                : root.querySelectorAll(".main-content");
+        containers.forEach((container) => {
             const cards = Array.from(container.querySelectorAll(".design-card"));
 
         cards.forEach((card, index) => {
