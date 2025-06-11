@@ -14,3 +14,11 @@ module.exports = function(eleventyConfig) {
     templateFormats: ["html", "njk"] // Process both .html and .njk files
   };
 };
+
+module.exports = function(eleventyConfig) {
+  // expose all your process.env into your templates
+  eleventyConfig.addGlobalData("env", process.env);
+  return {
+    dir: { input: ".", output: "publish" }
+  };
+};
