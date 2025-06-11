@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Log In</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    window.sb = createClient(
+      "{{ env.SUPABASE_URL }}",
+      "{{ env.SUPABASE_ANON_KEY }}"
+    );
+  </script>
 </head>
 <body>
   <main class="login-container">
@@ -25,12 +31,7 @@
   </main>
 
   <script>
-      // initialize Supabase
-      const sb = supabase.createClient(
-        'https://bnwxvoitxucqgtzowrfu.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3h2b2l0eHVjcWd0em93cmZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MDQxNjIsImV4cCI6MjA2NTA4MDE2Mn0.PBvgQdcf1ef1aNaSm-_6CYQVIH1JeJGolq8wKOQRyp4'
-      );
-
+    const sb = window.sb;
     document.getElementById('login-form').addEventListener('submit', async e => {
       e.preventDefault();
       const email = document.getElementById('email').value;

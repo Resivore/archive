@@ -4,9 +4,11 @@ console.log('🛠️ script.js loaded')
 // Import Supabase client from the CDN
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-// Supabase credentials
-const supabase = createClient(window.SUPABASE_URL,
-                              window.SUPABASE_ANON_KEY)
+// Supabase credentials (injected at build time)
+const supabase = createClient(
+  "{{ env.SUPABASE_URL }}",
+  "{{ env.SUPABASE_ANON_KEY }}"
+);
 
 // Helper to slugify a string for element IDs
 const slug = (str) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-\$/g, '')
