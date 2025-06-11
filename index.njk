@@ -19,3 +19,7 @@ ownerId: "{{ shop.ownerId }}"
 <main class="main-content" id="sold"><!-- SOLD CARDS --></main>
 <main class="main-content" id="created"><!-- CREATED CARDS --></main>
 <main class="main-content" id="requests">{% include "requests.html" %}</main>
+
+<script>
+  window.ownerId = "{{ shop.ownerId }}"
+</script>
