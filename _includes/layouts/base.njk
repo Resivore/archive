@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>aero's design shop</title>
+        <link rel="icon" href="favicon.ico" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link id="lightModeLink" rel="stylesheet" href="css/light-mode.css" disabled />
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    </head>
+    <body>
+        <div class="layout">
+            {% include "navbar.html" %}
+            <div class="content-wrapper">
+                <aside class="sidebar-wrapper">
+                    {% include "sidebar.html" %}
+                    <div class="sidebar-toggle-handle"><i class="fa-solid fa-caret-left"></i></div>
+                </aside>
+                {{ content | safe }}
+            </div>
+            {% include "footer.html" %}
+        </div>
+        <div class="lightbox-overlay" id="inspirationModal">
+            <div class="lightbox-content">
+                <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+                <img src="" alt="Inspiration" id="lightboxImage" />
+            </div>
+        </div>
+        <script type="module" src="js/script.js"></script>
+        <script src="js/sidebar.js"></script>
+        <script src="js/sidebarDropdowns.js"></script>
+        <script src="js/cards.js"></script>
+        <script src="js/lightbox.js"></script>
+        <script src="js/mainContent.js"></script>
+        <script src="js/themeSwitch.js"></script>
+    </body>
+</html>
