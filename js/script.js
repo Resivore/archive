@@ -157,3 +157,13 @@ renderAuthStatus()
 supabase.auth.onAuthStateChange((event, session) => {
   renderAuthStatus()
 })
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const { data: { user } } = await supabase.auth.getUser()
+  const ownerId = "{{ ownerId }}"            // from front matter
+
+  if (user && user.archiveid === ownerId) {
+    // show the controls
+    document.getElementById('owner-controls-wrapper').style.display = 'block'
+  }
+})
