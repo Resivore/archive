@@ -128,8 +128,8 @@ async function renderAuthStatus() {
 
     // 3) Render “Signed in as …” with a Sign out link:
     authStatusEl.innerHTML = `
-      Signed in as <strong>${profile.username}</strong>
-      <a href="#" id="sign-out">Sign out</a>
+      signed in as <strong>${profile.username}</strong>
+      <a href="#" id="sign-out">sign out</a>
     `
     document
       .getElementById('sign-out')
@@ -143,9 +143,9 @@ async function renderAuthStatus() {
   } else {
     // 4) No user → show login / signup links
     authStatusEl.innerHTML = `
-      <a href="/login.html">Log in</a>
+      <div><a href="/login.html">log in</a>
       &nbsp;|&nbsp;
-      <a href="/signup.html">Sign up</a>
+      <a href="/signup.html">sign up</a></div>
     `
   }
 }

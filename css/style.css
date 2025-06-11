@@ -600,6 +600,11 @@ a:hover,
     gap: 100px;
 }
 
+#auth-status {
+    display:flex;
+    flex-direction: column;
+}
+
 .theme-switch {
     position: relative;
     display: inline-block;
