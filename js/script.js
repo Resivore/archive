@@ -20,7 +20,7 @@ function buildCardHTML(d) {
     .map((_, i) => i < (d.slots || 0) ? '<i class="fas fa-circle"></i>' : '<i class="far fa-circle"></i>')
     .join('')
 
-  const previews = [d.img2, d.img3, d.img4]
+  const previews = [d.img1, d.img2, d.img3, d.img4]
     .filter(Boolean)
     .map((url, i) => `<img src="${url}" alt="Thumb ${i + 1}" referrerpolicy="no-referrer"/>`)
     .join('')
