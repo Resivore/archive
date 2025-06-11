@@ -1,59 +1,43 @@
 ---
+layout: layouts/base.njk
 permalink: /login.html
+title: Log In
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Log In</title>
-  <link rel="stylesheet" href="/css/style.css" />
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-    window.sb = createClient(
-      "{{ env.SUPABASE_DATABASE_URL }}",
-      "{{ env.SUPABASE_ANON_KEY }}"
-    );
-  </script>
-</head>
-<body>
-  <main class="login-container">
-    <h1>Sign In</h1>
-    <form id="login-form">
-      <label>
-        ✉️ Email
-        <input type="email" id="email" required />
-      </label>
-      <label>
-        🔒 Password
-        <input type="password" id="password" required />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
-    <div id="message"></div>
-  </main>
+<main class="login-container">
+  <h1>Sign In</h1>
+  <form id="login-form">
+    <label>
+      ✉️ Email
+      <input type="email" id="email" required />
+    </label>
+    <label>
+      🔒 Password
+      <input type="password" id="password" required />
+    </label>
+    <button type="submit">Log In</button>
+  </form>
+  <div id="message"></div>
+</main>
 
   <script>
-    const sb = window.sb;
-    document.getElementById('login-form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-        const { data, error } = await sb.auth.signInWithPassword({ email, password });
-      if (error) {
-        document.getElementById('message').textContent = error.message;
-      } else {
-        // on success, redirect back to your main page
-        window.location.href = '/';
-      }
-    });
+  const supabase = window.supabase;
+  document.getElementById('login-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      document.getElementById('message').textContent = error.message;
+    } else {
+      // on success, redirect back to your main page
+      window.location.href = '/';
+    }
+  });
 
     // If user is already signed in, skip straight to /
-      sb.auth.getSession().then(({ data: { session } }) => {
-      if (session) window.location.href = '/';
-    });
-  </script>
-</body>
-</html>
+    supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = '/';
+  });
+</script>
