@@ -73,6 +73,10 @@ html {
     overflow: hidden;
 }
 
+.small {
+    font-size: 12px;
+}
+
 .navbar {
     background: var(--background-main);
     border-bottom: var(--border);
