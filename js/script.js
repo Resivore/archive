@@ -62,7 +62,7 @@ function buildCardHTML(d) {
 }
 
 function renderDesigns(designs) {
-  const list = document.getElementById('design-list')
+  const list = document.getElementById('available')
   list.innerHTML = designs.map(d => buildCardHTML(d)).join('')
 }
 
@@ -88,7 +88,7 @@ supabase
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'designs' }, (payload) => {
     const d = payload.new
     if (d.status !== 'available') return
-    document.getElementById('design-list').insertAdjacentHTML('afterbegin', buildCardHTML(d))
+    document.getElementById('available').insertAdjacentHTML('afterbegin', buildCardHTML(d))
   })
   .subscribe()
 
