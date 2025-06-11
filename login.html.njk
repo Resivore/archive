@@ -8,7 +8,7 @@
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
     window.sb = createClient(
-      "{{ env.SUPABASE_URL }}",
+      "{{ env.SUPABASE_DATABASE_URL }}",
       "{{ env.SUPABASE_ANON_KEY }}"
     );
   </script>
