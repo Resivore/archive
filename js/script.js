@@ -1,18 +1,15 @@
----
-permalink: js/script.js
----
-
 // Confirm the script is loading
 console.log('🛠️ script.js loaded')
 
 // Import Supabase client from the CDN
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-// Supabase credentials (injected at build time)
-const supabase = createClient(
-  "{{ env.SUPABASE_URL }}",
-  "{{ env.SUPABASE_ANON_KEY }}"
-);
+// Supabase credentials
+const SUPABASE_URL = 'https://bnwxvoitxucqgtzowrfu.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3h2b2l0eHVjcWd0em93cmZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MDQxNjIsImV4cCI6MjA2NTA4MDE2Mn0.PBvgQdcf1ef1aNaSm-_6CYQVIH1JeJGolq8wKOQRyp4'
+
+// Create a Supabase client
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 // Helper to slugify a string for element IDs
 const slug = (str) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-\$/g, '')
@@ -159,14 +156,4 @@ renderAuthStatus()
 // 6) Re-render on auth changes (optional but handy)
 supabase.auth.onAuthStateChange((event, session) => {
   renderAuthStatus()
-})
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const { data: { user } } = await supabase.auth.getUser()
-  const ownerId = "{{ ownerId }}"            // from front matter
-
-  if (user && user.id === ownerId) {
-    // show the controls
-    document.getElementById('owner-controls-wrapper').style.display = 'block'
-  }
 })
