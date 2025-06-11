@@ -8,11 +8,10 @@
         <link id="lightModeLink" rel="stylesheet" href="css/light-mode.css" disabled />
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
         <script type="module" src="/js/supabase.js"></script>
-        <script type="module" src="/js/login.js"></script>
         <script type="module" src="/js/authStatus.js"></script>
         <script type="module" src="/js/designs.js"></script>
     </head>
-    <body>
+    <body><div class="layout">
         
                 {{ content | safe }}
             {% include "footer.html" %}
@@ -22,6 +21,7 @@
                 <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
                 <img src="" alt="Inspiration" id="lightboxImage" />
             </div>
+        </div>
         </div>
         <script src="js/sidebar.js"></script>
         <script src="js/sidebarDropdowns.js"></script>
