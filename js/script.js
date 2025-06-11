@@ -105,3 +105,55 @@ document.getElementById('design-form').addEventListener('submit', async (e) => {
   if (error) console.error('Insert error:', error)
   else f.reset()
 })
+
+const authStatusEl = document.getElementById('auth-status')
+
+async function renderAuthStatus() {
+  // 1) Check if there's a signed-in user:
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (user) {
+    // 2) If so, fetch their username from your users table:
+    const { data: profile, error } = await supabase
+      .from('users')
+      .select('username')
+      .eq('archiveid', user.id)
+      .single()
+
+    if (error) {
+      console.error('Error loading profile:', error)
+      authStatusEl.textContent = 'Error loading user'
+      return
+    }
+
+    // 3) Render “Signed in as …” with a Sign out link:
+    authStatusEl.innerHTML = `
+      Signed in as <strong>${profile.username}</strong>
+      <a href="#" id="sign-out">Sign out</a>
+    `
+    document
+      .getElementById('sign-out')
+      .addEventListener('click', async (e) => {
+        e.preventDefault()
+        await supabase.auth.signOut()
+        // reload or re-render
+        renderAuthStatus()
+      })
+
+  } else {
+    // 4) No user → show login / signup links
+    authStatusEl.innerHTML = `
+      <a href="/login.html">Log in</a>
+      &nbsp;|&nbsp;
+      <a href="/signup.html">Sign up</a>
+    `
+  }
+}
+
+// 5) Initial render:
+renderAuthStatus()
+
+// 6) Re-render on auth changes (optional but handy)
+supabase.auth.onAuthStateChange((event, session) => {
+  renderAuthStatus()
+})
