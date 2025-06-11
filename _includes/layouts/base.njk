@@ -9,8 +9,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
         <script>
   // these get baked in when Eleventy builds your site
-  window.SUPABASE_URL     = "{{ env.PUBLIC_SUPABASE_URL }}";
-  window.SUPABASE_ANON_KEY = "{{ env.PUBLIC_SUPABASE_ANON_KEY }}";
+  window.SUPABASE_URL     = "{{ env.SUPABASE_URL }}";
+  window.SUPABASE_ANON_KEY = "{{ env.SUPABASE_ANON_KEY }}";
 </script>
 <script type="module" src="/js/script.js"></script>
     </head>
