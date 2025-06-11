@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const { data: { user } } = await supabase.auth.getUser()
   const ownerId = "{{ ownerId }}"            // from front matter
 
-  if (user && user.archiveid === ownerId) {
+  if (user && user.id === ownerId) {
     // show the controls
     document.getElementById('owner-controls-wrapper').style.display = 'block'
   }
