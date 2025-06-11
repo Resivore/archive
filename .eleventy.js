@@ -1,24 +1,24 @@
+// at the very top, so process.env is populated from .env in dev
+require("dotenv").config();
+
 module.exports = function(eleventyConfig) {
-  // Passthrough copy asset folders to the output "publish" directory
+  // 1) pass your env vars through to templates
+  eleventyConfig.addGlobalData("env", process.env);
+
+  // 2) copy static asset folders straight through to “publish”
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("js");
 
   return {
+    // 3) configure your input/includes/output
     dir: {
       input: ".",
       includes: "_includes",
       output: "publish"
     },
-    templateFormats: ["html", "njk"] // Process both .html and .njk files
-  };
-};
-
-module.exports = function(eleventyConfig) {
-  // expose all your process.env into your templates
-  eleventyConfig.addGlobalData("env", process.env);
-  return {
-    dir: { input: ".", output: "publish" }
+    // 4) process both .html and .njk files
+    templateFormats: ["html", "njk"]
   };
 };
