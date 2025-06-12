@@ -1,11 +1,10 @@
-const eleventyVite = require("@11ty/eleventy-plugin-vite");
-
-module.exports = function(eleventyConfig) {
+module.exports = async function(eleventyConfig) {
+  const eleventyVite = (await import("@11ty/eleventy-plugin-vite")).default;
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("js");
-  eleventyConfig.addPlugin(eleventyVite, {
+  eleventyConfig.addPlugin(EleventyVitePlugin, {
     // any plugin options here (see the README)
   });
 
