@@ -1,0 +1,30 @@
+---
+title: "shop"
+scriptsPartial: "scripts-shop"
+---
+
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="https://www.wajas.com/profile.php?id=298" class="user-image"></a>
+        <div class="nav-header">
+            <div class="nav-title">aero's design shop</div>
+            <div class="nav-date">updated june 11, 2025</div>
+        </div>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#available">available</a></li>
+        <li><a href="#sold">sold</a></li>
+        <li><a href="#created">created</a></li>
+        <li><a href="#requests">requests</a></li>
+    </ul>
+</nav>
+<div class="content-wrapper">
+    <aside class="sidebar-wrapper">
+        {% include "sidebar.html" %}
+        <div class="sidebar-toggle-handle"><i class="fa-solid fa-caret-left"></i></div>
+    </aside>
+    <main class="main-content" id="available"></main>
+    <main class="main-content" id="sold" style="display:none;"></main>
+    <main class="main-content" id="created" style="display:none;"></main>
+    <main class="main-content" id="commissions" style="display:none;">{% include "commissions.html" %}</main>
+</div>

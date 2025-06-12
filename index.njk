@@ -1,30 +1,24 @@
 ---
-layout: layouts/base.njk
-title: "{{ shop.name }}"
-ownerId: "{{ shop.ownerId }}"
+title: "home"
+scriptsPartial: "scripts-home"
 ---
 
-            {% include "navbar.html" %}
-            <div class="content-wrapper">
-                <aside class="sidebar-wrapper">
-                    {% include "sidebar.html" %}
-                    <div class="sidebar-toggle-handle"><i class="fa-solid fa-caret-left"></i></div>
-                </aside>
-<main class="main-content" id="available"><!-- CARDS --></main>
-<main class="main-content" id="test">
-    <h1>Submit a New Design</h1>
-    <form id="design-form">
-        <input name="name"     placeholder="Name"    required /><br/>
-        <input name="img1"   placeholder="Image URL" required /><br/>
-        <input name="slots"    type="number" min="0" max="4" placeholder="Slots" /><br/>
-        <button type="submit">Add Design</button>
-    </form>
-
-      <h1>Available Designs</h1>
-    <div id="design-list">Loading…</div>
-</main>
-<main class="main-content" id="sold"><!-- SOLD CARDS --></main>
-<main class="main-content" id="created"><!-- CREATED CARDS --></main>
-<main class="main-content" id="requests">{% include "requests.html" %}</main>
-
-
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="nav-header">
+            <div class="nav-title">the archive</div>
+            <div class="nav-date">a wajas design marketplace</div>
+        </div>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/">home</a></li>
+        <li><a href="#explore">explore</a></li>
+        <li><a href="#search">search</a></li>
+        <li><a href="/">your shop</a></li>
+    </ul>
+</nav>
+<div class="content-wrapper">
+    <main class="main-content" id="home">home text :3</main>
+    <main class="main-content" id="explore" style="display:none;"></main>
+    <main class="main-content" id="search" style="display:none;"></main>
+</div>
