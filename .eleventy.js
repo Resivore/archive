@@ -1,5 +1,5 @@
 module.exports = async function(eleventyConfig) {
-  const eleventyVite = (await import("@11ty/eleventy-plugin-vite")).default;
+  const EleventyVitePlugin = (await import("@11ty/eleventy-plugin-vite")).default;
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("fonts");
   eleventyConfig.addPassthroughCopy("images");
