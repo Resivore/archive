@@ -1,4 +1,4 @@
-function init() {
+document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('themeToggle');
     const lightLink = document.getElementById('lightModeLink');
     if (!toggleBtn || !lightLink) return;
@@ -15,7 +15,7 @@ function init() {
         }
     }
 
-    toggleBtn.addEventListener('change', () => {
+    toggleBtn.addEventListener('change', function () {
         apply(toggleBtn.checked);
     });
 
@@ -28,10 +28,4 @@ function init() {
         // initialize based on current stylesheet state
         apply(!lightLink.hasAttribute('disabled'));
     }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+});
